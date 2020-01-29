@@ -26,17 +26,20 @@ def add_edit_game():
         if title in games:
             print("\nThe game is already in our database!\n")
         else:
-            developer = input("Developer: ").capitalize()
-            publisher = input("Publsiher: ").capitalize()
-            system = input("Console: ").capitalize()
-            release_year = input("Release Year: ").capitalize()
-            personal_rating = input("Give it a rating from 1-10: ")
-            play_size = input("Select one, Multi/Single/Either: ").capitalize()
-            price = input("Price: ")
-            progress = input("Beat it? [Y]/[N]: ").upper()
-            year_bought = input("Year bought: ").capitalize()
+            developer = input("Developer:").capitalize()
+            publisher = input("Publsiher:").capitalize()
+            system = input("Console:").capitalize()
+            release_year = input("Release Year:").capitalize()
+            personal_rating = input("Give it a rating from 1-10:")
+            play_size = input("Select one, Multi/Single/Either:").capitalize()
+            price = input("Price:")
+            progress = input("Beat it? [Y]/[N]:").upper()
+            year_bought = input("Year bought:").capitalize()
             game_num += 1
             games[game_num] = [genre,title,developer,publisher,system,release_year,personal_rating,play_size,price,progress,year_bought]
+            data = open("Database.pickle","wb")
+            pickle.dump(games,data)
+            data.close()
             print("\nThe game ",title, "has been added!\n")
     elif choice == "2":
         pass
@@ -44,24 +47,26 @@ def add_edit_game():
         print("\nLoading main manu!\n")
 
 def print_all_games():
+    global games
+    global game_num
     print("\nRunning: print_all_games()\n")
     if games == {}:
         print("\nThere is no game data recorded.\n")
     else:
         key_list = list(games.keys())
-        for game in key_list:
+        for game_num in key_list:
             print("----------")
-            print("Genre: ",games[game][0])
-            print("Title: ",games[game][1])
-            print("Developer: ",games[game][2])
-            print("Publisher: ",games[game][3])
-            print("System: ",games[game][4])
-            print("Release Year: ",games[game][5])
-            print("Personal Rating: ",games[game][6])
-            print("Multiplayer/Single Player/Either: ",games[game][7])
-            print("Price Paid: ",games[game][8])
-            print("Did you beat the game? [Y]/[N]: ",games[game][9])
-            print("Year Bought: ",games[game][10])
+            print("Genre: ",games[game_num][0])
+            print("Title: ",games[game_num][1])
+            print("Developer: ",games[game_num][2])
+            print("Publisher: ",games[game_num][3])
+            print("System: ",games[game_num][4])
+            print("Release Year: ",games[game_num][5])
+            print("Personal Rating: ",games[game_num][6])
+            print("Multiplayer/Single Player/Either: ",games[game_num][7])
+            print("Price Paid: ",games[game_num][8])
+            print("Did you beat the game? [Y]/[N]: ",games[game_num][9])
+            print("Year Bought: ",games[game_num][10])
             print("----------")
 
 def search_by_title():
