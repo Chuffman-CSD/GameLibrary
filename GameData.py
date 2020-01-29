@@ -3,16 +3,45 @@
 #1/27/2020
 
 import pickle
-
-#games = {1:['FPS','HALO 3','Bungee','Microsoft','Xbox 360','2007','Either','either','30.00','Yes','1/15/2008'],2:['Action RPG','Grand Theft Auto V','Rockstar Games','Sony','Playstation 4','2013','Single PLayer','either','150.00','Yes','October 2, 2016']} #- Used this for debugging
 games = {}
+
+game_num = 0
 
 game_data = open("Database.pickle","rb")
 games = pickle.load(game_data)
 game_data.close()
 
 def add_edit_game():
+    global games
+    global game_num
     print("\nRunning: add_edit_game()\n")
+    print("""1.) Add Game
+2.) Edit Game
+3.) Back To Menu""")
+    choice = input("Select a numerical option: ")
+    if choice == "1":
+        print("\nSelected: Adding Game.\n")
+        genre = input("Genre: ").capitalize()
+        title = input("Title: ").capitalize()
+        if title in games:
+            print("\nThe game is already in our database!\n")
+        else:
+            developer = input("Developer: ").capitalize()
+            publisher = input("Publsiher: ").capitalize()
+            system = input("Console: ").capitalize()
+            release_year = input("Release Year: ").capitalize()
+            personal_rating = input("Give it a rating from 1-10: ")
+            play_size = input("Select one, Multi/Single/Either: ").capitalize()
+            price = input("Price: ")
+            progress = input("Beat it? [Y]/[N]: ").upper()
+            year_bought = input("Year bought: ").capitalize()
+            game_num += 1
+            games[game_num] = [genre,title,developer,publisher,system,release_year,personal_rating,play_size,price,progress,year_bought]
+            print("\nThe game ",title, "has been added!\n")
+    elif choice == "2":
+        pass
+    elif choice == "3":
+        print("\nLoading main manu!\n")
 
 def print_all_games():
     print("\nRunning: print_all_games()\n")
@@ -28,9 +57,11 @@ def print_all_games():
             print("Publisher: ",games[game][3])
             print("System: ",games[game][4])
             print("Release Year: ",games[game][5])
-            print("Multiplayer/Single Player/Either: ",games[game][6])
-            print("Price Paid: ",games[game][7])
-            print("Year Bought: ",games[game][8])
+            print("Personal Rating: ",games[game][6])
+            print("Multiplayer/Single Player/Either: ",games[game][7])
+            print("Price Paid: ",games[game][8])
+            print("Did you beat the game? [Y]/[N]: ",games[game][9])
+            print("Year Bought: ",games[game][10])
             print("----------")
 
 def search_by_title():
@@ -63,7 +94,7 @@ def mainMenu():
         choice = input("Select a numerical option: ")
         if choice.isdigit():
             if choice == "1":
-                print_all_games()
+                add_edit_game()
             elif choice == "2":
                 print_all_games()
             elif choice == "3":
@@ -74,6 +105,8 @@ def mainMenu():
                 save_database()
             elif choice == "6":
                 exit()
+                games = pickle.dump(game_data)
+                game_data.close()
             elif choice.isalpha():
                     print("\nAlphabetical Responses are prohibited.\n")
 if __name__ == "__main__":
