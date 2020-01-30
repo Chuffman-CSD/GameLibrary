@@ -70,7 +70,15 @@ def print_all_games():
             print("----------")
 
 def search_by_title():
+    tally = 0
     print("\nRunning: serch_by_title(()\n")
+    title = input("Title you wish to search: ").capitalize()
+    for key in games.keys():
+        entry = games[key]
+        if title in entry[1]:
+            tally += 1
+            print("\n",tally,".)",entry[1])
+   
 
 def remove_a_game():
     print("\nRunning: remove_a_game()\n")
