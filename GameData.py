@@ -5,7 +5,9 @@
 import pickle
 games = {}
 
-game_num = 0
+key = 0
+
+unknown_entries_special = ["!","?","'","@","#","$","%","^","&","*","(",")","-","_","=","+","\\",'"',"{","}","[","]",":",";","/",".",">","<","~","`"]
 
 game_data = open("Database.pickle","rb")
 games = pickle.load(game_data)
@@ -13,61 +15,143 @@ game_data.close()
 
 def add_edit_game():
     global games
-    global game_num
+    global key
     print("\nRunning: add_edit_game()\n")
-    print("""1.) Add Game
-2.) Edit Game
-3.) Back To Menu""")
+    print("""===============
+ Add/Edit Menu
+===============
+| 1.) Add Game
+| 2.) Edit Game
+| 3.) Back To Menu\n""")
     choice = input("Select a numerical option: ")
     if choice == "1":
-        print("\nSelected: Adding Game.\n")
-        genre = input("Genre: ").capitalize()
-        title = input("Title: ").capitalize()
+        print("\n=================")
+        print("Add Menu Selected")
+        print("=================")
+        genre = input("| Genre: ").capitalize()
+        title = input("| Title: ").capitalize()
         if title in games:
             print("\nThe game is already in our database!\n")
         else:
-            developer = input("Developer:").capitalize()
-            publisher = input("Publsiher:").capitalize()
-            system = input("Console:").capitalize()
-            release_year = input("Release Year:").capitalize()
-            personal_rating = input("Give it a rating from 1-10:")
-            play_size = input("Select one, Multi/Single/Either:").capitalize()
-            price = input("Price:")
-            progress = input("Beat it? [Y]/[N]:").upper()
-            year_bought = input("Year bought:").capitalize()
-            game_num += 1
-            games[game_num] = [genre,title,developer,publisher,system,release_year,personal_rating,play_size,price,progress,year_bought]
+            developer = input("| Developer:").capitalize()
+            publisher = input("| Publsiher:").capitalize()
+            system = input("| Console:").capitalize()
+            release_year = input("| Release Year:").capitalize()
+            personal_rating = input("| Give it a rating from 1-10:")
+            play_size = input("| Select one, Multi/Single/Either:").capitalize()
+            price = input("| Price:")
+            progress = input("| Beat it? [Y]/[N]:").upper()
+            year_bought = input("| Year bought:").capitalize()
+            key += 1
+            for key in games:
+                key += 1
+            games[key] = [genre,title,developer,publisher,system,release_year,personal_rating,play_size,price,progress,year_bought]
             data = open("Database.pickle","wb")
             pickle.dump(games,data)
             data.close()
             print("\nThe game ",title, "has been added!\n")
     elif choice == "2":
+        for key in games.keys():
+            print(key,"-",games[key][1])
+        if key == 0:
+            print("\n***There are is no game data.***")
+        else:
+            edit_key = int(input("Which game would you like to edit: "))
+            print("""========================
+Select an option to edit
+========================
+| 1.) Genre
+| 2.) Title
+| 3.) Developer
+| 4.) Publisher
+| 5.) Console
+| 6.) Release Year
+| 7.) Personal Rating
+| 8.) Player Compatibilty
+| 9.) Price
+| 10.) Beat it?
+| 11.) Year Bought
+| 12.) Edit All Information
+| 13.) Cancel""")
+            choice = input("Select an option")
+            if choice.isdigit():
+                if choice == "1":
+                    genre = input("Enter the genre: ")
+                    print("Genre changed from",games[key][0],"to",genre,".")
+                    games[key][0] = genre
+                if choice == "2":
+                    title = input("Enter the title: ")
+                    print("Genre changed from",games[key][1],"to",title,".")
+                    games[key][1] = title
+                if choice == "3":
+                    developer = input("Enter the developer: ")
+                    print("Genre changed from",games[key][2],"to",developer,".")
+                    games[key][2] = developer
+                if choice == "4":
+                    publisher = input("Enter the publisher: ")
+                    print("Genre changed from",games[key][3],"to",publisher,".")
+                    games[key][3] = publisher
+                if choice == "5":
+                    console = input("Enter the console: ")
+                    print("Genre changed from",games[key][4],"to",console,".")
+                    games[key][4] = console
+                if choice == "6":
+                    release_year = input("Enter the release year: ")
+                    print("release year changed from",games[key][5],"to",release_year,".")
+                    games[key][5] = release_year
+                if choice == "7":
+                    personal_rating = input("Enter the personal rating: ")
+                    print("Personal Rating changed from",games[key][6],"to",personal_rating,".")
+                    games[key][6] = personal_rating
+                if choice == "8":
+                    compatibility = input("Enter the player compatibility: ")
+                    print("compatibility changed from",games[key][7],"to",compatibility,".")
+                    games[key][7] = compatibility
+                if choice == "9":
+                    price = input("Enter the player compatibility: ")
+                    print("Genre changed from",games[key][8],"to",price,".")
+                    games[key][8] = price
+                if choice == "10":
+                    price = input("Enter the player compatibility: ")
+                    print("Genre changed from",games[key][9],"to",price,".")
+                    games[key][9] = price
+                if choice == "11":
+                    pass
+                if choice == "12":
+                    pass
+                if choice == "13":
+                    pass
+            elif choice.isalpha():
+                pass
+    elif choice in unknown_entries_special:
         pass
     elif choice == "3":
         print("\nLoading main manu!\n")
 
 def print_all_games():
     global games
-    global game_num
+    global key
     print("\nRunning: print_all_games()\n")
     if games == {}:
+        key = 0
         print("\nThere is no game data recorded.\n")
     else:
         key_list = list(games.keys())
-        for game_num in key_list:
+        for key in key_list:
             print("----------")
-            print("Genre: ",games[game_num][0])
-            print("Title: ",games[game_num][1])
-            print("Developer: ",games[game_num][2])
-            print("Publisher: ",games[game_num][3])
-            print("System: ",games[game_num][4])
-            print("Release Year: ",games[game_num][5])
-            print("Personal Rating: ",games[game_num][6])
-            print("Multiplayer/Single Player/Either: ",games[game_num][7])
-            print("Price Paid: ",games[game_num][8])
-            print("Did you beat the game? [Y]/[N]: ",games[game_num][9])
-            print("Year Bought: ",games[game_num][10])
+            print("| Genre: ",games[key][0])
+            print("| Title: ",games[key][1])
+            print("| Developer: ",games[key][2])
+            print("| Publisher: ",games[key][3])
+            print("| System: ",games[key][4])
+            print("| Release Year: ",games[key][5])
+            print("| Personal Rating: ",games[key][6])
+            print("| Multiplayer/Single Player/Either: ",games[key][7])
+            print("| Price Paid: ",games[key][8])
+            print("| Did you beat the game? [Y]/[N]: ",games[key][9])
+            print("| Year Bought: ",games[key][10])
             print("----------")
+        print("There are",key,"games in the database!")
 
 def search_by_title():
     tally = 0
@@ -90,6 +174,7 @@ def save_database():
     game_data.close()
 
 def mainMenu():
+    global unkown_entries
     while True:
         print("""
 ========================
@@ -97,14 +182,14 @@ def mainMenu():
 ========================
 
 ---MAIN MANU---
-1.) Add/Edit Game
-2.) Print All Games
-3.) Search Game By Title
-4.) Remove a Game
-5.) Save Database
+| 1.) Add/Edit Game
+| 2.) Print All Games
+| 3.) Search Game By Title
+| 4.) Remove a Game
+| 5.) Save Database
 
-6) Quit\n""")
-        choice = input("Select a numerical option: ")
+| 6) Quit\n""")
+        choice = input("Select a numerical option: ").lower()
         if choice.isdigit():
             if choice == "1":
                 add_edit_game()
@@ -120,7 +205,9 @@ def mainMenu():
                 exit()
                 games = pickle.dump(game_data)
                 game_data.close()
-            elif choice.isalpha():
-                    print("\nAlphabetical Responses are prohibited.\n")
+        elif choice.isalpha():
+            print("\n***Invalid character. [",choice,"]***")
+        elif choice in unknown_entries_special:
+            print("\n***Invalid character. [",choice,"]***")
 if __name__ == "__main__":
     mainMenu()
