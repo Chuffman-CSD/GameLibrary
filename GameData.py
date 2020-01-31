@@ -81,27 +81,27 @@ Select an option to edit
                     games[key][0] = genre
                 if choice == "2":
                     title = input("Enter the title: ")
-                    print("Genre changed from",games[key][1],"to",title,".")
+                    print("Title changed from",games[key][1],"to",title,".")
                     games[key][1] = title
                 if choice == "3":
                     developer = input("Enter the developer: ")
-                    print("Genre changed from",games[key][2],"to",developer,".")
+                    print("Developer changed from",games[key][2],"to",developer,".")
                     games[key][2] = developer
                 if choice == "4":
                     publisher = input("Enter the publisher: ")
-                    print("Genre changed from",games[key][3],"to",publisher,".")
+                    print("Publisher changed from",games[key][3],"to",publisher,".")
                     games[key][3] = publisher
                 if choice == "5":
                     console = input("Enter the console: ")
-                    print("Genre changed from",games[key][4],"to",console,".")
+                    print("Console changed from",games[key][4],"to",console,".")
                     games[key][4] = console
                 if choice == "6":
                     release_year = input("Enter the release year: ")
-                    print("release year changed from",games[key][5],"to",release_year,".")
+                    print("Release year changed from",games[key][5],"to",release_year,".")
                     games[key][5] = release_year
                 if choice == "7":
                     personal_rating = input("Enter the personal rating: ")
-                    print("Personal Rating changed from",games[key][6],"to",personal_rating,".")
+                    print("Personal rating changed from",games[key][6],"to",personal_rating,".")
                     games[key][6] = personal_rating
                 if choice == "8":
                     compatibility = input("Enter the player compatibility: ")
@@ -109,16 +109,50 @@ Select an option to edit
                     games[key][7] = compatibility
                 if choice == "9":
                     price = input("Enter the player compatibility: ")
-                    print("Genre changed from",games[key][8],"to",price,".")
+                    print("Price changed from",games[key][8],"to",price,".")
                     games[key][8] = price
                 if choice == "10":
-                    price = input("Enter the player compatibility: ")
-                    print("Genre changed from",games[key][9],"to",price,".")
-                    games[key][9] = price
+                    progress = input("Enter the player compatibility: ")
+                    print("Beat it changed from",games[key][9],"to",progress,".")
+                    games[key][9] = progress
                 if choice == "11":
-                    pass
+                    year_bought = input("Enter the player compatibility: ")
+                    print("Purchase year changed from",games[key][9],"to",year_bought,".")
+                    games[key][9] = year_bought
                 if choice == "12":
-                    pass
+                    genre = input("Enter the genre: ")
+                    print("\nGenre changed from",games[key][0],"to",genre,".")
+                    games[key][0] = genre
+                    title = input("Enter the title: ")
+                    print("\nTitle changed from",games[key][1],"to",title,".")
+                    games[key][1] = title
+                    developer = input("Enter the developer: ")
+                    print("\nDeveloper changed from",games[key][2],"to",developer,".")
+                    games[key][2] = developer
+                    publisher = input("Enter the publisher: ")
+                    print("\nPublisher changed from",games[key][3],"to",publisher,".")
+                    games[key][3] = publisher
+                    console = input("Enter the console: ")
+                    print("\nConsole changed from",games[key][4],"to",console,".")
+                    games[key][4] = console
+                    release_year = input("Enter the release year: ")
+                    print("\nRelease year changed from",games[key][5],"to",release_year,".")
+                    games[key][5] = release_year
+                    personal_rating = input("Enter the personal rating: ")
+                    print("\nPersonal rating changed from",games[key][6],"to",personal_rating,".")
+                    games[key][6] = personal_rating
+                    compatibility = input("Enter the player compatibility: ")
+                    print("\nCompatibility changed from",games[key][7],"to",compatibility,".")
+                    games[key][7] = compatibility
+                    price = input("Enter the player compatibility: ")
+                    print("\nPrice changed from",games[key][8],"to",price,".")
+                    games[key][8] = price
+                    progress = input("Enter the player compatibility: ")
+                    print("\nBeat it changed from",games[key][9],"to",progress,".")
+                    games[key][9] = progress
+                    year_bought = input("Enter the player compatibility: ")
+                    print("\nPurchase year changed from",games[key][9],"to",year_bought,".")
+                    games[key][9] = year_bought
                 if choice == "13":
                     pass
             elif choice.isalpha():
